@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionCloth NG - Premium Native & Western Wear | Owerri, Anambra, Enugu</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="loader">
+            <i class="fas fa-tshirt"></i>
+            <p>Loading FashionCloth NG...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="https://images.unsplash.com/photo-1625772299848-361b803ffa27?w=50&h=50&fit=crop&crop=face" alt="DS">
+                <span>FashionCloth NG</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="cart-icon" onclick="openCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span id="cart-count">0</span>
+                </div>
+                <a href="admin.html" class="admin-link" title="Admin Panel">
+                    <i class="fas fa-cog"></i>
+                </a>
+            </div>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - PROFESSIONAL FASHION HERO -->
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🏆 #1 Fashion Store in Eastern Nigeria</div>
+            <h1 class="hero-title">
+                Premium <span class="gradient-text">Native & Western</span><br>
+                Fashion Collection
+            </h1>
+            <p class="hero-subtitle">
+                Authentic Ankara, Agbada, Native Wear & Corporate Attire from our 3 branches in 
+                <strong>Owerri, Anambra, Enugu</strong>
+            </p>
+            <div class="hero-buttons">
+                <button class="cta-primary" onclick="scrollToShop()">
+                    <i class="fas fa-shopping-bag"></i> Shop Collection
+                </button>
+                <button class="cta-secondary" onclick="openWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Order
+                </button>
+            </div>
+            <div class="hero-stats">
+                <span class="stat-item"><i class="fas fa-store"></i> 3 Branches</span>
+                <span class="stat-item"><i class="fas fa-shipping-fast"></i> Same Day Delivery</span>
+                <span class="stat-item"><i class="fas fa-money-bill-wave"></i> Cash on Delivery</span>
+                <span class="stat-item"><i class="fas fa-phone"></i> 24/7 Support</span>
+            </div>
+        </div>
+        <div class="hero-models">
+            <img src="https://images.unsplash.com/photo-1574194050860-b6f4441f63bb?w=500&h=700&fit=crop" alt="Ankara Fashion" class="model-img model-1">
+            <img src="https://images.unsplash.com/photo-1625772299848-361b803ffa27?w=450&h=650&fit=crop" alt="Agbada" class="model-img model-2">
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="categories-grid">
+                <a href="#" class="category-card" data-category="ankara">
+                    <img src="https://images.unsplash.com/photo-1608259402577-295d84b1e3e9?w=400&h=300&fit=crop" alt="Ankara">
+                    <div class="category-overlay">
+                        <h3>Ankara Gowns</h3>
+                        <p>From ₦15,000</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-category="agbada">
+                    <img src="https://images.unsplash.com/photo-1574194050860-b6f4441f63bb?w=400&h=300&fit=crop" alt="Agbada">
+                    <div class="category-overlay">
+                        <h3>Agbada Sets</h3>
+                        <p>From ₦35,000</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-category="corporate">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Corporate">
+                    <div class="category-overlay">
+                        <h3>Corporate Wear</h3>
+                        <p>From ₦12,000</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section - PROFESSIONAL PRODUCT GRID -->
+    <section id="shop" class="shop-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Trending Collection</h2>
+                <p class="section-subtitle">Latest arrivals from our Owerri, Anambra & Enugu stores</p>
+            </div>
+            <div class="products-filter">
+                <button class="filter-btn active" data-filter="all">All Products</button>
+                <button class="filter-btn" data-filter="ankara">Ankara</button>
+                <button class="filter-btn" data-filter="agbada">Agbada</button>
+                <button class="filter-btn" data-filter="corporate">Corporate</button>
+            </div>
+            <div class="products-wrapper">
+                <div id="products-grid" class="products-grid">
+                    <!-- Dynamic products from Firebase -->
+                    <div class="product-placeholder">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading collection...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Why Shop With Us?</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>3 Physical Stores</h3>
+                    <p>Visit us in Owerri, Anambra or Enugu for instant shopping</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Express Delivery</h3>
+                    <p>Same day delivery in Eastern region, 1-3 days nationwide</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Pay on Delivery</h3>
+                    <p>No upfront payment. Pay cash when your order arrives</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Call/WhatsApp anytime. Real people, real fast responses</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Customers Say</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Chioma">
+                    </div>
+                    <p>"The Ankara gown is 🔥🔥🔥 Perfect fit and quality! Best in Owerri!"</p>
+                    <h4>— Chioma A. <span>Owerri</span></h4>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Emeka">
+                    </div>
+                    <p>"Agbada delivered to Enugu in 24hrs. 100% recommended!"</p>
+                    <h4>— Emeka O. <span>Enugu</span></h4>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Adaora">
+                    </div>
+                    <p>"Corporate suits are top quality. Will order again from Anambra branch."</p>
+                    <h4>— Adaora C. <span>Anambra</span></h4>
+                </div>
+            </div>
+            <div class="testimonial-nav">
+                <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you deliver nationwide?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Fast delivery across Nigeria from our 3 branches. Same day in Eastern region.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Cash on Delivery, Bank Transfer, or Paystack. No upfront payment required for COD!
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I return or exchange items?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! 7-day return policy for unworn items. Contact us via WhatsApp for returns.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I track my order?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We'll send tracking details via WhatsApp. Call 09017001875 for live updates.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">Ready to Order?</h2>
+                <p style="color: rgba(255,255,255,0.9);">Contact our stores directly</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3><i class="fas fa-phone"></i> Call or WhatsApp</h3>
+                    <div class="contact-numbers">
+                        <a href="tel:+2349017001875" class="contact-number">
+                            <i class="fab fa-whatsapp"></i> 09017001875
+                        </a>
+                        <a href="tel:+2349134214260" class="contact-number">
+                            <i class="fas fa-phone"></i> 09134214260
+                        </a>
+                    </div>
+                    <div class="branches">
+                        <h4>🏪 Visit Our Stores</h4>
+                        <div class="branch">
+                            <strong>Owerri:</strong> Douglas Road
+                        </div>
+                        <div class="branch">
+                            <strong>Anambra:</strong> Awka Branch
+                        </div>
+                        <div class="branch">
+                            <strong>Enugu:</strong> New Haven
+                        </div>
+                    </div>
+                </div>
+                <form id="contactForm" class="contact-form">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="tel" placeholder="Phone Number" required>
+                    <input type="email" placeholder="Email (optional)">
+                    <textarea placeholder="Tell us what you need..." rows="4" required></textarea>
+                    <button type="submit" class="cta-primary full-width">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="https://images.unsplash.com/photo-1625772299848-361b803ffa27?w=50&h=50&fit=crop" alt="FashionCloth NG">
+                        <span>FashionCloth NG</span>
+                    </div>
+                    <p>#1 Premium Fashion Store | Owerri • Anambra • Enugu</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#shop">Shop</a>
+                    <a href="#services">Services</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="admin.html">Admin</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <a href="tel:+2349017001875">📞 09017001875</a>
+                    <a href="https://wa.me/2349017001875">💬 WhatsApp</a>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/densweed001"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FashionCloth NG. All rights reserved | Fast Delivery Nationwide</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shopping-bag"></i> Your Cart</h3>
+                <button class="close-btn" onclick="closeCart()">&times;</button>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-actions">
+                <button class="btn-secondary" onclick="closeCart()">Continue Shopping</button>
+                <button class="btn-primary" onclick="processCheckout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
